@@ -17,9 +17,6 @@ public:
 
     void backprop();
     void updateWeights(float learnRate);
-
-//private:
-    
 };
 
 template <class... Sizes>

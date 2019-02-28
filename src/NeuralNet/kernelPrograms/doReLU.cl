@@ -1,7 +1,7 @@
 
-__kernel void doReLU(
-    __global const float* in,
-    __global float* out
+kernel void doReLU(
+    global const float* in,
+    global float* out
 )
 {
     int gid = get_global_id(0);

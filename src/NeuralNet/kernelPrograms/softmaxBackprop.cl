@@ -1,7 +1,8 @@
-__kernel void softmaxBackprop(
-    __global float* prevDerivatives,
-    __global const float* outVals,
-    __global const float* outErrDerivatives,
+
+kernel void softmaxBackprop(
+    global float* prevDerivatives,
+    global const float* outVals,
+    global const float* outErrDerivatives,
     int prevSize
 )
 {

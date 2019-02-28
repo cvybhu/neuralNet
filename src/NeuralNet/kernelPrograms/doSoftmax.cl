@@ -1,6 +1,7 @@
-__kernel void doSoftmax(
-    __global const float* in,
-    __global float* out,
+
+kernel void doSoftmax(
+    global const float* in,
+    global float* out,
     float allExpSum
 )
 {

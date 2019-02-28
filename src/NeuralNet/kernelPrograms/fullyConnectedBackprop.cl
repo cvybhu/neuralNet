@@ -1,3 +1,4 @@
+
 kernel void fullyConnectedBackprop(
     global float* outErrDerivatives,
     global float* weights,

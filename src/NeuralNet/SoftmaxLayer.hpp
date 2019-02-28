@@ -12,7 +12,7 @@ public:
     void backprop();
     void updateWeights(float learnRate);
 
-//private:
+private:
     std::optional< cl::make_kernel<cl::Buffer, cl::Buffer, float> > forwardKernel;
     std::optional< cl::make_kernel<cl::Buffer, cl::Buffer, cl::Buffer, int> > backpropKernel;
 };

@@ -6,53 +6,46 @@ void xorNet()
 {
     NeuralNet net;
     net.addInputLayer(2);
-    net.addFullyConnectedLayer(2);
-    net.addSigmoidLayer(2);
-    net.addFullyConnectedLayer(2);
-    net.addSigmoidLayer(2);
-    //net.addSoftmaxLayer(2);
-    //net.addLeakyReLULayer(1);
+    net.addFullyConnectedLayer(4);
+    net.addLeakyReLULayer(4);
+    net.addFullyConnectedLayer(1);
+    net.addReLULayer(1);
 
 
     float learningRate = 0.1;
-
-    logg << std::setprecision(4) << std::fixed;
-
+    int batchSize = 100;
 
     float err = 1337.f;;
     for(int iter = 0; err > 1.f; iter++)
     {
         err = 0;
 
-        logg << "================= ITER #" << iter << "=================\n";
-        for(int t = 0; t < 100; t++)
+        logg << "================= ITER #" << iter << " (" << iter * batchSize << " test cases done)=================\n";
+        for(int t = 0; t < batchSize; t++)
         {
 
             switch (rand()%4)
             {
                 case 0:
                     net.feed({0, 0});
-                    err += net.backpropMSE({1, 0});
+                    err += net.backpropMSE({0});
                     break;
                 case 1:
                     net.feed({0, 1});
-                    err += net.backpropMSE({0, 1});
+                    err += net.backpropMSE({1});
                     break;
                 case 2:
                     net.feed({1, 0});
-                    err += net.backpropMSE({0, 1});
+                    err += net.backpropMSE({1});
                     break;
                 case 3:
                     net.feed({1, 1});
-                    err += net.backpropMSE({1, 0});
+                    err += net.backpropMSE({0});
                     break;
             }
 
-            //net.dump();
             net.updateWeights(learningRate);
         }
-
-        //std::exit(1);
 
         net.feed({0, 0});
         logg << "net(0, 0) = " << net.getOut() << '\n';

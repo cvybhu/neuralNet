@@ -1,6 +1,11 @@
 #pragma once
 #include "Layer.hpp"
 
+/*
+    Layer template that applies function like ReLU or sigmoid
+    layers based on this are defined at the end of this file
+*/
+
 template <const char** forwardKernelName, const char** backpropKernelName>
 class ApplyFuncLayer : public Layer
 {
@@ -20,7 +25,7 @@ public:
     void updateWeights(float) 
     {} //No weights in here
 
-//private:
+private:
     std::optional<cl::make_kernel<cl::Buffer, cl::Buffer> > forwardKernel;
     std::optional<cl::make_kernel<cl::Buffer, cl::Buffer, cl::Buffer> > backpropKernel;
 };

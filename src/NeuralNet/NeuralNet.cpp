@@ -13,7 +13,7 @@ NeuralNet::NeuralNet() : myLogg(logg)
     if(platforms.empty())
     {
         myLogg << " No OpenCL 1.2 platforms found. Check OpenCL installation!\n";
-        exit(1);
+        std::exit(1);
     }
 
     logg << " Found OpenCL platforms:\n";
@@ -124,15 +124,10 @@ float NeuralNet::backpropCrossEntropy(const Tensor& expectedOut)
 
         err -= targetOut * log(out);
         errorDerivative = targetOut / out;
-        //if(fabs(errorDerivative) > 1.f)logg << "errorDerivative:" << errorDerivative << '\n';
 
     }, layers.back()->vals, layers.back()->errorDerivative);
-    /*
-    layers.back()->vals.forEach3([&err](float& out, float& targetOut, float& errorDerivative){
-    }, expectedOut, layers.back()->errorDerivative);
-    */
+    
     layers.back()->errorDerivative.loadToGPU(&clCommandQueue);
-    //logg << layers.back()->errorDerivative << '\n';
 
     for(int i = (int)layers.size()-1; i > 0; i--)
         layers[i]->backprop();

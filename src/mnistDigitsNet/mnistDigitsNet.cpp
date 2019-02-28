@@ -38,15 +38,16 @@ void mnistDigitsNet()
     logg << "Done\n";
 
 //Start training
-    float learningRate = 0.01f;
+    float learningRate = 0.1f;
 
-    Tensor expectedOut(10); // To not alloc one every loop
     float err = 1337.f;
     int batchSize = 100;
-    for(int iter = 0; iter > -1 && err > 0.f; iter++)
-    {
-        err = 0;
 
+    Tensor expectedOut(10); // To not alloc one every loop
+    for(int iter = 1; err > 0.f; iter++)
+    {
+    //Do training
+        err = 0;
         for(int t = 0; t < batchSize; t++)
         {
             int curCase = rand() % trainImages.size();
@@ -57,25 +58,21 @@ void mnistDigitsNet()
                 expectedOut.get(i) = (trainLabels[curCase] == i ? 1 : 0);
             err += net.backpropCrossEntropy(expectedOut);
 
-            //net.dump(3);
             net.updateWeights(learningRate);
         }
 
+    //Write training results
         logg << "============= ITER: " << iter << " (" << iter*batchSize << " train examples)===========\n";
         logg << "ERROR: " << err << '\n';
         net.feed(trainImages.front());
         logg << "net(traingImages[0]):" << net.getOut();
-        float sum = 0;
-        Tensor out = net.getOut();
-        out.forEach([&sum](float& f){sum += f;});
-        logg << "sum: " << sum << '\n';
-
-
+        
+    //Test model on test images
         if(iter % 600 == 0)
         {
             logg << "[ITER = " << iter <<"] ---- testing...\n";
             int goodOuts = 0;
-            for(int i = 0; i < testImages.size(); i++)
+            for(int i = 0; i < (int)testImages.size(); i++)
             {
                 net.feed(testImages[i]);
                 Tensor output = net.getOut();

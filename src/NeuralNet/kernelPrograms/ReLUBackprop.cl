@@ -1,7 +1,8 @@
-__kernel void ReLUBackprop(
-    __global float* prevDerivatives,
-    __global const float* outVals,
-    __global const float* outErrDerivatives
+
+kernel void ReLUBackprop(
+    global float* prevDerivatives,
+    global const float* outVals,
+    global const float* outErrDerivatives
 )
 {
     int gid = get_global_id(0);

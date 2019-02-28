@@ -12,12 +12,9 @@ void SoftmaxLayer::forward()
     float allExpSum = 0.f;
     prev->vals.forEach([&allExpSum](float& f)
     {
-        //logg << "F: " << f << '\n';
-        //logg << "exp(F): " << exp(f) << '\n';
         allExpSum += exp(f);
     });
-    //logg << "AllexpSum: " << allExpSum << '\n';
-    //logg << "vals.totalSize: " << vals.totalSize << '\n';
+    
     (*forwardKernel)(cl::EnqueueArgs(*clData.queue, cl::NDRange(vals.totalSize)),
                     *prev->vals.clBuff, *vals.clBuff, allExpSum);
 }

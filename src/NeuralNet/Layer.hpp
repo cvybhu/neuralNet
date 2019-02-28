@@ -36,7 +36,7 @@ public:
     virtual void updateWeights(float learningRate) = 0;
 
     virtual ~Layer() = default;
-//private:
+
     Layer* prev;
 
     ClData clData;
@@ -45,8 +45,7 @@ public:
     Tensor errorDerivative;
 
     template <class... ArgsTypes>
-    static cl::make_kernel<
-    ArgsTypes...> 
+    static cl::make_kernel<ArgsTypes...> 
     createKernelFromSources(const char* kernelName, 
                             const std::vector<const char*>& sourcePaths,
                             ClData clData);
@@ -55,6 +54,8 @@ public:
     static float getRandFloat(); //gets random float in [-1;1] range
 
     std::optional<cl::make_kernel<cl::Buffer>> zeroBuffKernel;
+
+    friend NeuralNet;
 };
 
 

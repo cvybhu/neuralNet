@@ -1,6 +1,7 @@
-__kernel void fullyConnectedUpdateWeights(
-    __global float* weights,
-    __global float* weightsChanges,
+
+kernel void fullyConnectedUpdateWeights(
+    global float* weights,
+    global float* weightsChanges,
     float learnRate)
 {
     int gid = get_global_id(0);

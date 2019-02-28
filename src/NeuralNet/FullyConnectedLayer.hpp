@@ -13,9 +13,9 @@ public:
     void backprop();
     void updateWeights(float learningRate);
 
-//private:
     std::optional<Tensor> weights;
     std::optional<Tensor> weightsChanges;
+private:
     std::optional<cl::make_kernel<cl::Buffer, cl::Buffer, cl::Buffer, int>> forwardKernel;
     std::optional<cl::make_kernel<cl::Buffer, cl::Buffer, cl::Buffer, cl::Buffer, cl::Buffer, int, int>> backpropKernel;
     std::optional<cl::make_kernel<cl::Buffer, cl::Buffer, float> > weightsUpdateKernel;

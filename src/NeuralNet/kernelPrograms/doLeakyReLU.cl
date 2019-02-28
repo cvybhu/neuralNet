@@ -1,7 +1,7 @@
 
-__kernel void doLeakyReLU(
-    __global const float* in,
-    __global float* out
+kernel void doLeakyReLU(
+    global const float* in,
+    global float* out
 )
 {
     int gid = get_global_id(0);

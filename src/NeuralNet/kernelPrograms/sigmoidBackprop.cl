@@ -1,3 +1,4 @@
+
 kernel void sigmoidBackprop(
     global float* prevDerivatives,
     global const float* outVals,
