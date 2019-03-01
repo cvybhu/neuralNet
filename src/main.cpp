@@ -10,10 +10,8 @@ int main()
 {
     logg << std::setprecision(6) << std::fixed;
 
-
     mnistDigitsNet();
-    xorNet();
-
+    //xorNet();
 
     return 0;
 }
