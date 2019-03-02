@@ -7,6 +7,19 @@ std::string imageToStr(Tensor img);
 
 void mnistDigitsNet()
 {
+//Setup neural network
+    logg << "Creating neural network...\n";
+    NeuralNet net;
+    net.addInputLayer(1, 28, 28);
+    net.addConvoluteLayer(1, 28, 28, {1, 1});
+    net.addFullyConnectedLayer(50);
+    net.addReLULayer(50);
+    net.addFullyConnectedLayer(10);
+    net.addSigmoidLayer(10);
+    net.addSoftmaxLayer(10);
+    logg << "Done\n";
+
+
 //Load train data
     logg << "Loading MNIST Training images & labels...\n";
     std::vector<Tensor>&& trainImages = readImages("data/mnistDigits/train-images.bin");
@@ -26,16 +39,6 @@ void mnistDigitsNet()
     logg << "Example image (label: " << (int)testLabels.front() << ")\n";
     logg << imageToStr(testImages.front());
 
-//Setup neural network
-    logg << "Creating neural network...\n";
-    NeuralNet net;
-    net.addInputLayer(28, 28);
-    net.addFullyConnectedLayer(50);
-    net.addReLULayer(50);
-    net.addFullyConnectedLayer(10);
-    net.addSigmoidLayer(10);
-    net.addSoftmaxLayer(10);
-    logg << "Done\n";
 
 //Start training
     float learningRate = 0.1f;
@@ -109,10 +112,10 @@ std::string imageToStr(Tensor img)
         return '#';
     };
 
-    for(int y = 0; y < img.size[1]; y++)
+    for(int y = 0; y < img.size[2]; y++)
     {
-        for(int x = 0; x < img.size[0]; x++)
-            res += intensity2Char(img.get(x, y));
+        for(int x = 0; x < img.size[1]; x++)
+            res += intensity2Char(img.get(0, x, y));
 
         res += '\n';
     }

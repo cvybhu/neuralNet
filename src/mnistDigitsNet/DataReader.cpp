@@ -39,14 +39,14 @@ std::vector< Tensor > readImages(const char* imagesFile)
             logg << "Error reading file " << imagesFile << "!!!\n";
         }
 
-        res.emplace_back(width, height);
+        res.emplace_back(1, width, height);
         Tensor& cur = res.back();
         
         for(int x = 0; x < (int)width; x++)
         for(int y = 0; y < (int)height; y++)
         {
             int index = y * width + x;
-            cur.get(x, y) = ((float)readBuff[index]) / 255.f;
+            cur.get(0, x, y) = ((float)readBuff[index]) / 255.f;
         }
     }
 

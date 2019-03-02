@@ -1,5 +1,5 @@
 #include "NeuralNet.hpp"
-#include "FullyConnectedLayer.hpp"
+#include "ConvoluteLayer.hpp"
 
 NeuralNet::NeuralNet() : myLogg(logg)
 {
@@ -135,6 +135,15 @@ float NeuralNet::backpropCrossEntropy(const Tensor& expectedOut)
     return err;
 }
 
+void NeuralNet::addConvoluteLayer(int featuresNumber, int width, int height, std::pair<int,int> kernelSize)
+{
+    assert(!layers.empty());
+    assert(layers.back()->vals.dimensions == 3);
+    assert(layers.back()->vals.size[1] == width);
+    assert(layers.back()->vals.size[2] == height);
+
+    addLayer<ConvoluteLayer>(clData, featuresNumber, width, height, kernelSize);
+}
 
 
 void NeuralNet::dump(int fromLayer) const

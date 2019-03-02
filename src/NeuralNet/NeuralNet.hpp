@@ -19,6 +19,7 @@ public:
     template <class... Sizes> void addReLULayer(Sizes...);
     template <class... Sizes> void addLeakyReLULayer(Sizes...);
     template <class... Sizes> void addSoftmaxLayer(Sizes...);
+    void addConvoluteLayer(int featuresNumber, int width, int height, std::pair<int,int> kernelSize = {3, 3});
 
     
     void feed(const Tensor&);

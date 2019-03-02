@@ -19,7 +19,9 @@ public:
         Input,
         FullyConnected,
         ApplyFunc,
-        SoftMax
+        SoftMax,
+        Convolute,
+        MaxPool
     };
 
     const Type type;
