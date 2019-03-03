@@ -20,7 +20,7 @@ public:
     { (*forwardKernel)(cl::EnqueueArgs(*clData.queue, cl::NDRange(vals.totalSize)), *prev->vals.clBuff, *vals.clBuff).wait(); }
 
     void backprop()
-    { (*backpropKernel)(cl::EnqueueArgs(*clData.queue, cl::NDRange(vals.totalSize)), *prev->errorDerivative.clBuff, *vals.clBuff, *errorDerivative.clBuff); }
+    { (*backpropKernel)(cl::EnqueueArgs(*clData.queue, cl::NDRange(vals.totalSize)), *prev->errorDerivative.clBuff, *vals.clBuff, *errorDerivative.clBuff).wait(); }
 
     void updateWeights(float) 
     {} //No weights in here

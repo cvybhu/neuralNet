@@ -16,13 +16,13 @@ void SoftmaxLayer::forward()
     });
     
     (*forwardKernel)(cl::EnqueueArgs(*clData.queue, cl::NDRange(vals.totalSize)),
-                    *prev->vals.clBuff, *vals.clBuff, allExpSum);
+                    *prev->vals.clBuff, *vals.clBuff, allExpSum).wait();
 }
 
 void SoftmaxLayer::backprop()
 {
     (*backpropKernel)(cl::EnqueueArgs(*clData.queue, cl::NDRange(vals.totalSize)),
-                    *prev->errorDerivative.clBuff, *vals.clBuff, *errorDerivative.clBuff, prev->vals.totalSize);
+                    *prev->errorDerivative.clBuff, *vals.clBuff, *errorDerivative.clBuff, prev->vals.totalSize).wait();
 
 }
 

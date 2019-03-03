@@ -14,7 +14,6 @@ int main()
     //xorNet();
 
 
-/*
     int sizeX = 5, sizeY = 4;
 
     NeuralNet net;
@@ -27,7 +26,6 @@ int main()
     logg << "Feeding " << in << "...";
     net.feed(in);
     logg << "Got: " << net.getOut() << '\n';
-*/  
 
     return 0;
 }
