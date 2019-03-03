@@ -24,12 +24,16 @@ public:
 
     std::optional< cl::make_kernel<cl::Buffer, int, int, int, cl::Buffer, int, int, cl::Buffer, int, int, int, cl::Buffer> > 
             forwardKernel;
+
     std::optional< cl::make_kernel<cl::Buffer, int, int, int, cl::Buffer, int, int, cl::Buffer, int, int, int> > 
             backpropValsKernel;
-    std::optional< cl::make_kernel<cl::Buffer> >
+            
+    std::optional< cl::make_kernel<cl::Buffer, cl::Buffer, cl::Buffer, cl::Buffer, int, int, int, int, int, int> >
             backpropWeightsKernel;
+
     std::optional< cl::make_kernel<cl::Buffer> >
             sumWeightsUpdatesKernel;
-    std::optional< cl::make_kernel<cl::Buffer> > 
+
+    std::optional< cl::make_kernel<cl::Buffer, cl::Buffer, cl::Buffer, cl::Buffer, int, int, int, int, int, int, float> > 
             weightsUpdateKernel;
 };

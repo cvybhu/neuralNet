@@ -11,7 +11,8 @@ void mnistDigitsNet()
     logg << "Creating neural network...\n";
     NeuralNet net;
     net.addInputLayer(1, 28, 28);
-    net.addConvoluteLayer(1, 28, 28, {1, 1});
+    net.addConvoluteLayer(3, 28, 28, {3, 3});
+    net.addReLULayer(28*28*3);
     net.addFullyConnectedLayer(50);
     net.addReLULayer(50);
     net.addFullyConnectedLayer(10);
