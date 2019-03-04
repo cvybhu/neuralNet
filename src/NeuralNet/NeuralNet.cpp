@@ -1,5 +1,6 @@
 #include "NeuralNet.hpp"
 #include "ConvoluteLayer.hpp"
+#include "MaxPoolLayer.hpp"
 
 NeuralNet::NeuralNet() : myLogg(logg)
 {
@@ -143,6 +144,12 @@ void NeuralNet::addConvoluteLayer(int featuresNumber, int width, int height, std
     assert(layers.back()->vals.size[2] == height);
 
     addLayer<ConvoluteLayer>(clData, featuresNumber, width, height, kernelSize);
+}
+
+void NeuralNet::addMaxPoolLayer(int featuresNumber, int width, int height, std::pair<int,int> poolSize)
+{
+    assert(!layers.empty());
+    addLayer<MaxPoolLayer>(clData, featuresNumber, width, height, poolSize);
 }
 
 

@@ -13,6 +13,5 @@ int main()
     mnistDigitsNet();
     //xorNet();
 
-
     return 0;
 }

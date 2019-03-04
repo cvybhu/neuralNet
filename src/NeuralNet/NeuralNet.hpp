@@ -20,6 +20,7 @@ public:
     template <class... Sizes> void addLeakyReLULayer(Sizes...);
     template <class... Sizes> void addSoftmaxLayer(Sizes...);
     void addConvoluteLayer(int featuresNumber, int width, int height, std::pair<int,int> kernelSize = {3, 3});
+    void addMaxPoolLayer(int featuresNumber, int width, int height, std::pair<int,int> poolSize = {2, 2});
 
     
     void feed(const Tensor&);
@@ -32,7 +33,7 @@ public:
 
     void dump(int fromLayer = 0) const;
 
-private:
+//private:
     //OpenCL stuff
     cl::Context clContext;
     cl::Device clDevice;
