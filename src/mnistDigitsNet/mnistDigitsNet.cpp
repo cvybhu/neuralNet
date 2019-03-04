@@ -11,8 +11,8 @@ void mnistDigitsNet()
     logg << "Creating neural network...\n";
     NeuralNet net;
     net.addInputLayer(1, 28, 28);
-    net.addConvoluteLayer(3, 28, 28, {3, 3});
-    net.addReLULayer(28*28*3);
+    net.addConvoluteLayer(1, 28, 28, {3, 3});
+    net.addReLULayer(28*28*1);
     net.addFullyConnectedLayer(50);
     net.addReLULayer(50);
     net.addFullyConnectedLayer(10);
@@ -42,7 +42,7 @@ void mnistDigitsNet()
 
 
 //Start training
-    float learningRate = 0.1f;
+    float learningRate = 0.02f;
 
     float err = 1337.f;
     int batchSize = 100;
