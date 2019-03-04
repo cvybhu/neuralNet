@@ -12,19 +12,19 @@ void mnistDigitsNet()
     NeuralNet net;
     net.addInputLayer(1, 28, 28);
 
-    net.addConvoluteLayer(5, 28, 28, {3, 3});
-    net.addMaxPoolLayer(5, 14, 14, {2, 2});
-    net.addReLULayer(5, 14, 14);
+    net.addConvoluteLayer(20, 28, 28, {3, 3});
+    net.addMaxPoolLayer(20, 14, 14, {2, 2});
+    net.addReLULayer(20, 14, 14);
 
-    net.addConvoluteLayer(10, 14, 14, {3, 3});
-    net.addMaxPoolLayer(10, 7, 7, {2, 2});
-    net.addReLULayer(10, 7, 7);
+    net.addConvoluteLayer(50, 14, 14, {3, 3});
+    net.addMaxPoolLayer(50, 7, 7, {2, 2});
+    net.addReLULayer(50, 7, 7);
 
-    net.addFullyConnectedLayer(30);
-    net.addReLULayer(30);
+    net.addFullyConnectedLayer(500);
+    net.addReLULayer(500);
 
     net.addFullyConnectedLayer(10);
-    net.addSigmoidLayer(10);
+    //net.addSigmoidLayer(10);
 
     net.addSoftmaxLayer(10);
     logg << "Done\n";
