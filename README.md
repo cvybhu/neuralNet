@@ -1,10 +1,13 @@
 # NeuralNet
-Neural Net 'library' written in C++ / OpenCL
+Neural Net 'library' written in C++ / OpenCL  
+It is not very fast but for now im still learning how neural nets work
 
 ## Features:
 
 #### Layer types:
 * Fully Connected
+* Convolute
+* Max Pool
 
 #### Activation functions:
 * Sigmoid
