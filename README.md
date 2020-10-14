@@ -1,6 +1,6 @@
 # NeuralNet
 Neural Net 'library' written in C++ / OpenCL  
-It is not very fast but for now im still learning how neural nets work
+It is not very fast but it works
 
 ## Features:
 
